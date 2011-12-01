@@ -11,9 +11,7 @@
 		00CFDFE011384CC60091E310 /* PupilCheckApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 00CFDFDF11384CC60091E310 /* PupilCheckApp.mm */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		220B89FA1487438600E32CD0 /* SimpleGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 220B89F91487438600E32CD0 /* SimpleGUI.cpp */; };
 		220F218A1484775100ED8715 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220F21891484775100ED8715 /* CoreMotion.framework */; };
-		22AEF00614873547008A17F0 /* Slider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 22AEF00414873547008A17F0 /* Slider.cpp */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
 		43CD9799123D6504003B628E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 43CD9798123D6504003B628E /* Icon.png */; };
@@ -30,12 +28,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* PupilCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PupilCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		220B89F61487437800E32CD0 /* pf_tempesta_seven.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pf_tempesta_seven.h; sourceTree = "<group>"; };
-		220B89F71487437800E32CD0 /* SimpleGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleGUI.h; sourceTree = "<group>"; };
-		220B89F91487438600E32CD0 /* SimpleGUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleGUI.cpp; sourceTree = "<group>"; };
 		220F21891484775100ED8715 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		22AEF00414873547008A17F0 /* Slider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Slider.cpp; path = ../src/Slider.cpp; sourceTree = "<group>"; };
-		22AEF00514873547008A17F0 /* Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Slider.h; path = ../src/Slider.h; sourceTree = "<group>"; };
 		28FD14FF0DC6FC520079059D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* PupilCheck_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PupilCheck_Prefix.pch; sourceTree = "<group>"; };
@@ -73,11 +66,6 @@
 		00CFDFA7113848F40091E310 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				220B89F91487438600E32CD0 /* SimpleGUI.cpp */,
-				220B89F61487437800E32CD0 /* pf_tempesta_seven.h */,
-				220B89F71487437800E32CD0 /* SimpleGUI.h */,
-				22AEF00414873547008A17F0 /* Slider.cpp */,
-				22AEF00514873547008A17F0 /* Slider.h */,
 				00CFDFDF11384CC60091E310 /* PupilCheckApp.mm */,
 			);
 			name = Source;
@@ -207,8 +195,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				00CFDFE011384CC60091E310 /* PupilCheckApp.mm in Sources */,
-				22AEF00614873547008A17F0 /* Slider.cpp in Sources */,
-				220B89FA1487438600E32CD0 /* SimpleGUI.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
