@@ -29,8 +29,8 @@
 
 #define DELAY_MEASURE 250
 
-#define THRESH1 23
-#define THRESH2 30
+#define THRESH1 15
+#define THRESH2 28
 
 #define CROP_X1 260
 #define CROP_Y1 185
@@ -230,6 +230,7 @@ void extractPupilParams(cv::Mat &cropIm, int thresh1, int thresh2, cv::Mat &thre
     //imshow("Contours" , cropIm);
     //Display Contours*******************
     
+    cv::Point2f centerOfFrame = cv::Point2f(cropIm.cols / 2, cropIm.rows / 2 );
     
     int cmin= 15 ; // minimum contour length
     int cmax= 100; // maximum contour length
@@ -237,7 +238,7 @@ void extractPupilParams(cv::Mat &cropIm, int thresh1, int thresh2, cv::Mat &thre
     std::vector <std::vector<cv::Point> >::iterator itc= contours.begin();
     
     cv::Point2f ctr;
-    float rad, prevRad = 0;
+    float rad, greatestRad = 0, lowestDistToCenter = -1;
     
     while (itc != contours.end()) {
         if (itc->size() < cmin || itc->size() > cmax) {
@@ -245,11 +246,17 @@ void extractPupilParams(cv::Mat &cropIm, int thresh1, int thresh2, cv::Mat &thre
         } else {
             // find largest 
             cv::minEnclosingCircle(cv::Mat(*itc), ctr, rad);
-            if (rad > prevRad) {
-              radius = rad;
-              center = ctr;
+            float distToCenter = sqrt(pow(ctr.x - centerOfFrame.x, 2) + pow(ctr.y - centerOfFrame.y, 2)); 
+            if (rad > greatestRad) {
+                greatestRad = rad;
             }
-            prevRad = rad;
+            if (lowestDistToCenter < 0 || distToCenter < lowestDistToCenter) {
+                lowestDistToCenter = distToCenter;
+            }
+            if (rad >= greatestRad * .8 || distToCenter <= lowestDistToCenter) {
+                radius = rad;
+                center = ctr;
+            }
             ++itc;
         }
     }
@@ -419,12 +426,14 @@ void PupilCheckApp::draw()
                 brightL = 1.0f;
             }
 
-            gl::color(brightL, brightL, brightL);
-            gl::drawSolidRect(Rectf(screen.getUpperLeft().x, screen.getUpperLeft().y, screen.getCenter().x - CENTER_PAD, screen.getLowerRight().y));
+            if (!measured) {
+                gl::color(brightL, brightL, brightL);
+                gl::drawSolidRect(Rectf(screen.getUpperLeft().x, screen.getUpperLeft().y, screen.getCenter().x - CENTER_PAD, screen.getLowerRight().y));
 
-            gl::color(brightR, brightR, brightR);
-            gl::drawSolidRect(Rectf(screen.getCenter().x + CENTER_PAD, screen.getUpperLeft().y, screen.getLowerRight().x, screen.getLowerRight().y));
-
+                gl::color(brightR, brightR, brightR);
+                gl::drawSolidRect(Rectf(screen.getCenter().x + CENTER_PAD, screen.getUpperLeft().y, screen.getLowerRight().x, screen.getLowerRight().y));
+            }
+                
             sequenceFramesElapsed++;
         }
 
@@ -452,7 +461,7 @@ void PupilCheckApp::draw()
                 gl::color(1.0f, 1.0f, 0, .4f);
                 gl::drawSolidCircle(Vec2f(pupilCenter.x * ratioX + screen.getUpperLeft().x, pupilCenter.y * ratioY + screen.getUpperLeft().y), pupilRadius * ratioX);
                 gl::drawSolidCircle(Vec2f(pupilCenter.x * ratioX + screen.getCenter().x, pupilCenter.y * ratioY + screen.getUpperLeft().y), pupilRadius * ratioX);
-                console() << pupilCenter.x << "," << pupilCenter.y << " " << pupilRadius << endl;
+                // console() << pupilCenter.x << "," << pupilCenter.y << " " << pupilRadius << endl;
                 if (measured) {
                     gl::color(1.0f, 1.0f, 1.0, 1);
                     drawText((sequenceCounter == 0 ? "low stimulus radius:" : "high stimulus radius:"), Vec2f(PAD, PAD + FONT_SIZE * .5), smallFont);
